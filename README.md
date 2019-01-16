@@ -90,3 +90,17 @@ $ vault read -format=json secret/letsencrypt/cert_configs/gitlab.example.com
 ```
 
 In the above case, you would set the `CERT_PROPERTY_NAME` environment variable to `certificate`, since this is the field where your certificate lives within the certificate Vault object.
+
+## Docker
+
+### Building Docker image:
+
+```
+$ docker build . -t my_vault_exporter:latest
+```
+
+### Running Docker image:
+
+```
+$ docker run -p 8080:8080 -d -e VAULT_ADDR=http://1.2.3.4:8200 -e VAULT_TOKEN=12345-67890-ABCDE-FGHIJ --rm my_vault_exporter:latest
+```
