@@ -13,7 +13,7 @@ So you've built some automation around [Let's Encrypt](https://letsencrypt.org/)
 This assumes that you already have the following available
 
 - A Vault server
-- A Vault token that has read access to the `VAULT_BASE_PATH` path in vault
+- A Vault token that has `read` and `list` access to the `VAULT_BASE_PATH` path in vault
 - At least one certificate stored in Vault at `VAULT_BASE_PATH` with the attribute `CERT_PROPERTY_NAME` containing the value of the certificate
 - [Node.js](https://nodejs.org/) v6 or higher
 
