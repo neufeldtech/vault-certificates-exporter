@@ -77,7 +77,7 @@ server.get('/metrics', (req, res) => {
   })
   .catch((err) => {
     res.set('Content-Type', register.contentType);
-    res.end(register.metrics());
+    res.status(500).end(register.metrics());
     console.log(`Failed to scrape vault: ${err}`)
   }
   )
