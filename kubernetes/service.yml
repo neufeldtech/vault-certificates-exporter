@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: vault-certificates-exporter
+  namespace: vault-certificates-exporter
+spec:
+  selector:
+    app: vault-certificates-exporter
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  type: ClusterIP
