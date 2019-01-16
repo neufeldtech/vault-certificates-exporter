@@ -1,0 +1,29 @@
+{
+  "name": "vault-certificates-exporter",
+  "version": "0.0.1",
+  "description": "A Prometheus exporter to report on X509 Certificate metrics stored in Hashicorp Vault",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/neufeldtech/vault-certificate-exporter"
+  },
+  "keywords": [
+    "vault",
+    "hashicorp",
+    "prometheus",
+    "exporter",
+    "certificate",
+    "x509"
+  ],
+  "author": "Jordan Neufeld <jordan@neufeldtech.com>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "node-forge": "^0.7.6",
+    "node-vault": "^0.9.5",
+    "prom-client": "^11.2.1"
+  }
+}
