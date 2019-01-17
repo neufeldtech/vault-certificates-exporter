@@ -36,6 +36,7 @@ const notValidAfterGauge = new Gauge({
   labelNames: ['cn', 'path']
 });
 
+
 function getCertificates() {
   return new Promise((resolve, reject) => {
     vault.list(certConfigsPath)
@@ -54,6 +55,10 @@ function getCertificates() {
         });
         upGauge.set(1)
         resolve()
+      })
+      .then(() => {
+        vault.tokenRenewSelf()
+        .catch((err) => console.log(`Error renewing Vault token: ${err}`))
       })
       .catch((err) => {
         upGauge.set(0)
@@ -85,5 +90,7 @@ server.get('/metrics', (req, res) => {
 
 // Initialize the getCertificates call once
 getCertificates().catch((err) => console.log(`Failed to scrape vault: ${err}`))
+
+
 console.log(`Server listening on... ${port}`)
 server.listen(port)

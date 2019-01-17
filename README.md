@@ -91,6 +91,45 @@ $ vault read -format=json secret/letsencrypt/cert_configs/gitlab.example.com
 
 In the above case, you would set the `CERT_PROPERTY_NAME` environment variable to `certificate`, since this is the field where your certificate lives within the certificate Vault object.
 
+## Vault Setup
+
+### Create Policy
+
+Create a policy with read and list access to your `VAULT_BASE_PATH` path.
+
+1) Write the policy hcl config file
+
+```
+$ cat letsencrypt-policy-ro.hcl
+path "secret/letsencrypt/cert_configs/*" {
+  capabilities = [ "read", "list" ]
+}
+```
+
+2) Create the policy
+
+```
+$ vault policy write letsencrypt-policy-ro ./letsencrypt-policy-ro.hcl
+```
+
+3) Get a token with the new policy
+
+```
+$ vault token create -renewable=true -policy=letsencrypt-policy-ro
+Key                  Value
+---                  -----
+token                LASKDFKDJSFHASDFJHSDIFHJUDAFJS
+token_accessor       SDKFJHSJWEHRKSUDFd2WG1F3HOZiiH
+token_duration       768h
+token_renewable      true
+token_policies       ["default" "letsencrypt-policy-ro"]
+identity_policies    []
+policies             ["default" "letsencrypt-policy-ro"]
+
+```
+
+You will use the value in the `token` field for your `VAULT_TOKEN`
+
 ## Docker
 
 ### Building Docker image:
