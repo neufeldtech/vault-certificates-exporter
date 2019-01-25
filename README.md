@@ -1,5 +1,7 @@
 # Vault Certificates Exporter
 
+[![Build Status](https://travis-ci.org/neufeldtech/vault-certificates-exporter.svg?branch=master)](https://travis-ci.org/neufeldtech/vault-certificates-exporter)
+
 A Prometheus exporter to report on X509 Certificate metrics stored in Hashicorp Vault
 
 ## About the project
@@ -15,7 +17,7 @@ This assumes that you already have the following available
 - A Vault server
 - A Vault token that has `read` and `list` access to the `VAULT_BASE_PATH` path in vault
 - At least one certificate stored in Vault at `VAULT_BASE_PATH` with the attribute `CERT_PROPERTY_NAME` containing the value of the certificate
-- [Node.js](https://nodejs.org/) v6 or higher
+- [Node.js](https://nodejs.org/) v8 or higher
 
 ## Config Options
 

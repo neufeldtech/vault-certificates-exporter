@@ -4,8 +4,9 @@
   "description": "A Prometheus exporter to report on X509 Certificate metrics stored in Hashicorp Vault",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "test": "node_modules/.bin/mocha --timeout 5000 test/*.js",
+    "start": "node index.js",
+    "dev": "VAULT_TOKEN=root VAULT_ADDR=http://localhost:8200 node index.js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +27,11 @@
     "node-forge": "^0.7.6",
     "node-vault": "^0.9.5",
     "prom-client": "^11.2.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-subset": "^1.6.0",
+    "mocha": "^5.2.0",
+    "mock-require": "^3.0.3"
   }
 }
