@@ -1,0 +1,19 @@
+#!/bin/bash
+
+nohup vault server -dev -dev-root-token-id=root -dev-listen-address=0.0.0.0:8200 &
+echo 'starting vault...'
+sleep 3
+curl -svX POST \
+  http://localhost:8200/v1/secret/letsencrypt/cert_configs/github.example.com \
+  -H 'Content-Type: application/json' \
+  -H 'x-vault-token: root' \
+  -d '{"certificate": "-----BEGIN CERTIFICATE-----\nMIIDlDCCAnwCCQCbXVhuVMrORDANBgkqhkiG9w0BAQUFADCBizEbMBkGA1UEAwwS\nZ2l0aHViLmV4YW1wbGUuY29tMRgwFgYDVQQKDA9leGFtcGxlIGNvbXBhbnkxEDAO\nBgNVBAcMB2V4YW1wbGUxEDAOBgNVBAgMB0FsYWJhbWExCzAJBgNVBAYTAlVTMSEw\nHwYJKoZIhvcNAQkBFhJleGFtcGxlQGV4YW1wbGUub20wHhcNMTkwMTIyMjEyMzU1\nWhcNMjAwMTIyMjEyMzU1WjCBizEbMBkGA1UEAwwSZ2l0aHViLmV4YW1wbGUuY29t\nMRgwFgYDVQQKDA9leGFtcGxlIGNvbXBhbnkxEDAOBgNVBAcMB2V4YW1wbGUxEDAO\nBgNVBAgMB0FsYWJhbWExCzAJBgNVBAYTAlVTMSEwHwYJKoZIhvcNAQkBFhJleGFt\ncGxlQGV4YW1wbGUub20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC2\nwILtUBnW5X8UMVpIBEXHk3W4u0sVZmve1UrU4bwBjoTVtQ/TdtDjCYUdnD5mfGXU\naz9TJ/XYfxJ8ZRxaRUrzKLl/jJTOd1VkOHmoamWl9ejUJG4B5zC12b9tazU7ISVE\nmvMfhISBR5QYjEapLeIPsJpzrbmENom+TW/FbIllkvdTEDPicqbAF+dG3Fqjj/Vr\nadcjwf2V8thtvt6CEG8+Fnpf/o8CiUQ+QpN4BC5jsmV2jOu05YPmFMJP2XWBfdtD\nw1RVznoT2PEBcYCFfrZyJ3kvdNszjdJk7na2n8wc5j4eVtQnd0QvqsGejwSXYY2h\ncFHFPz4oJeOAdsKXOpOfAgMBAAEwDQYJKoZIhvcNAQEFBQADggEBAEAeQH8+TKyy\n+pbnSpaIX0U6IhendqmPCP0dsEj6O9vZPY03cklHyIdFPZkXduq66pxabCa//H4s\n+xNR1YT33N8JBcW+OsOxyj/n3iaG+1R1X3llrlB5wZ7/2bCp+qWpfFQWHyc3Vub/\nxuYMdaLQ2bB1uhHbzpr4ZKEeUHMLXYNwg0N21pwkkNNU3ggR14yzZePEHRekvypS\nZH00dV0LGQtpCw9Swqh9IhBcNMOSI+9KRCmIxuRwPJ5iB4fNIuic3Wh7Bd0dHa1W\nxPPcd1f23Nsni+0vHKbxwGbdo6I5ekwvi6lBVTiDQs3fIJyFxzO/OPFnquHHDrvL\nM5AkB+nbxPU=\n-----END CERTIFICATE-----"}'
+
+curl -svX POST \
+  http://localhost:8200/v1/secret/letsencrypt/cert_configs/gitlab.example.com \
+  -H 'Content-Type: application/json' \
+  -H 'x-vault-token: root' \
+  -d '{"certificate": "-----BEGIN CERTIFICATE-----\nMIIDkjCCAnoCCQCXHtXs4NYH9TANBgkqhkiG9w0BAQUFADCBijEbMBkGA1UEAwwS\nZ2l0bGFiLmV4YW1wbGUuY29tMRgwFgYDVQQKDA9leGFtcGxlIGNvbXBhbnkxEDAO\nBgNVBAcMB2V4YW1wbGUxEDAOBgNVBAgMB0FsYWJhbWExCzAJBgNVBAYTAlVTMSAw\nHgYJKoZIhvcNAQkBFhFnaXRsYWJAZXhhbXBsZS5vbTAeFw0xOTAxMjIyMTI1MTda\nFw0yMDAxMjIyMTI1MTdaMIGKMRswGQYDVQQDDBJnaXRsYWIuZXhhbXBsZS5jb20x\nGDAWBgNVBAoMD2V4YW1wbGUgY29tcGFueTEQMA4GA1UEBwwHZXhhbXBsZTEQMA4G\nA1UECAwHQWxhYmFtYTELMAkGA1UEBhMCVVMxIDAeBgkqhkiG9w0BCQEWEWdpdGxh\nYkBleGFtcGxlLm9tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7aS6\n17MLqXmpdSFSa1hgrY1Jl3VEols1CMoC3TuYDIpUDON7U/oBo7jPffHqk8jBvhZ3\n6RfzupVoZM4BqBQd1AimoPC/N3sfE+DdgzTUzMM2cb/xX/Nz6s0IKjkoEZ+vnJmo\nEuOReLr2tLot3lMS3NsZsSvY8eoK22W1kXBG3EOQ2zwu1rlgBM9hAWIyD+Xj10Qs\nQYswXae6I/autiOI7zT4CUHTEFlvG3DB9D2uUIBfj/lzjNYJ0a7aJTowzz3qXbkY\n+z6+FR1y9lTUSLvBFHP1uBNNGNi6XS71lwqpajv/dRKGWI+jlldeKZ/mFTnX8Ygu\nqskKPW8z2koieQQUKQIDAQABMA0GCSqGSIb3DQEBBQUAA4IBAQBrxHgKqmIbuccz\naks8MD5T4EP2NGpogLZ5Wp8O4qi6QeZZTnuisYTuJvAUkF2XaN7cTpDgfZK1gJyz\nhxifJ7+poLT4WUgiBTB9p+IRdU8NBpk5rvr0fVg8Evd7sbjuKRRuMaqw2f/7X1Ni\nMOGBu1FGnzbvjQaCn3Z9OcFqY6gzfbWTBlf6Qz4dduoLOHEBZoGJUTHBRiPhGYQ4\nIsYAJI92WZI6ZdnMRisES+vr2ls9RaYgdsOyOV3nCEM/1CtDZhvbHUv3JHtuqAkr\n9Whs8eX7STYT73Ub7JQt9hc2bCd6iRJcBllJmHjTWLNtr6QUOz+vpZl2Qd/8KyyW\nUafi+XbY\n-----END CERTIFICATE-----"}'
+
+  vault read 'secret/letsencrypt/cert_configs/github.example.com'
+  vault read 'secret/letsencrypt/cert_configs/gitlab.example.com'
