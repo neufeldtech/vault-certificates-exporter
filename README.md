@@ -1,5 +1,7 @@
 # Vault Certificates Exporter
 
+[![Build Status](https://travis-ci.org/neufeldtech/vault-certificates-exporter.svg?branch=master)](https://travis-ci.org/neufeldtech/vault-certificates-exporter)
+
 A Prometheus exporter to report on X509 Certificate metrics stored in Hashicorp Vault
 
 ## About the project
