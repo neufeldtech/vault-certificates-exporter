@@ -6,7 +6,7 @@
   "scripts": {
     "test": "node_modules/.bin/mocha --timeout 5000 test/*.js",
     "start": "node index.js",
-    "dev": "VAULT_TOKEN=root; VAULT_ADDR=http://localhost:8200; node index.js"
+    "dev": "VAULT_TOKEN=root VAULT_ADDR=http://localhost:8200 node index.js"
   },
   "repository": {
     "type": "git",
