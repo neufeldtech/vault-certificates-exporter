@@ -1,6 +1,6 @@
 {
   "name": "vault-certificates-exporter",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A Prometheus exporter to report on X509 Certificate metrics stored in Hashicorp Vault",
   "main": "index.js",
   "scripts": {
