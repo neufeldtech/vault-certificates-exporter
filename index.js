@@ -90,6 +90,9 @@ server.get('/', (req, res) => {
 })
 
 server.get('/metrics', (req, res) => {
+  // Need to reset this every time so that we remove certs that were deleted from vault
+  notValidBeforeGauge.reset()
+  notValidAfterGauge.reset()
   getCertificates()
     .then(() => {
       res.set('Content-Type', register.contentType);
@@ -105,9 +108,6 @@ server.get('/metrics', (req, res) => {
     .then(() => console.log('Successfully renewed vault token'))  
     .catch((err) => { console.log(err)})
 })
-
-// Initialize the getCertificates call once
-getCertificates().catch((err) => console.log(`Failed to scrape vault: ${err}`))
 
 console.log(`Server listening on... ${port}`)
 server.listen(port)
