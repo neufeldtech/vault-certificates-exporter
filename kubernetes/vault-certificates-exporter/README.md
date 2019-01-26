@@ -54,20 +54,4 @@ Parameter | Description | Default
 `vault.token` | A vault token that has read access to your specified vault base path | `12345-67890-ABCDE-FGHIJ`
 `vault.certPropertyName` | The name of the vault property/attribute that contains the PEM certificate you wish to expose data about | `certificate`
 
-
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
-
-```bash
-$ helm install --name my-release \
-    --set key_1=value_1,key_2=value_2 \
-    stable/elasticsearch-exporter
-```
-
-Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart. For example,
-
-```bash
-# example for staging
-$ helm install --name my-release -f values.yaml stable/elasticsearch-exporter
-```
-
 > **Tip**: You can use the default [values.yaml](values.yaml)
